@@ -6,5 +6,6 @@ cp .env.example .env
 
 pip install -r requirements.txt
 
-python main.py
+cd ..
+python kharazmi-game
 ```
