@@ -5,4 +5,4 @@ __pycache__
 .env
 
 # data files
-models/data
+kharazmi-game/models/data/
