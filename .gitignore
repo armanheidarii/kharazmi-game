@@ -3,3 +3,6 @@ __pycache__
 
 # .env files
 .env
+
+# data files
+models/data
