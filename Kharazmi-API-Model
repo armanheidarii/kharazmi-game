@@ -98,7 +98,7 @@ GET /max-game-levels
             None
 
     Response:
-            1. Success game creation
+            1. Success get max game levels
                 Status 200 (OK)
                 body:
                     {
@@ -120,7 +120,7 @@ GET /max-game-categories
             None
 
     Response:
-            1. Success game creation
+            1. Success get max game categories
                 Status 200 (OK)
                 body:
                     {
@@ -141,10 +141,29 @@ GET /games-count
             None
 
     Response:
-            1. Success game creation
+            1. Success get games count
                 Status 200 (OK)
                 body:
                     {
                         "games_count": games count of the user,
                         "msg": "Games count gave successfully."
+                    }
+
+
+GET /score-received
+
+    Request:
+        header:
+            Authorization: Bearer JWT_token
+
+        body:
+            None
+
+    Response:
+            1. Success get score received
+                Status 200 (OK)
+                body:
+                    {
+                        "score_received": score received of the user,
+                        "msg": "Score received gave successfully."
                     }
