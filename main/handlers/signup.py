@@ -1,3 +1,4 @@
+from validators import email as validators_email
 from peewee import DoesNotExist
 from flask import jsonify, request
 
