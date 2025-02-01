@@ -19,6 +19,9 @@ def score_received():
     return (
         jsonify(
             {
+                "max_easy": user.max_easy,
+                "max_medium": user.max_medium,
+                "max_hard": user.max_hard,
                 "score_received": user.score_received,
                 "msg": "Score received gave successfully.",
             }
