@@ -6,9 +6,9 @@ from main.db.models.User import User
 from main import app
 
 
-@app.route("/get-rank", methods=["GET"])
+@app.route("/get-ranks", methods=["GET"])
 @jwt_required()
-def get_rank():
+def get_ranks():
     current_username = get_jwt_identity()
     try:
         user = User.get(User.username == current_username)
