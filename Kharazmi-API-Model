@@ -149,3 +149,43 @@ GET /score-received
                         "score_received": score that the user received,
                         "msg": "Score received gave successfully."
                     }
+
+
+GET /get-ranks
+
+    Request:
+        header:
+            Authorization: Bearer JWT_token
+
+        body:
+            None
+
+    Response:
+            1. Success get ranks
+                Status 200 (OK)
+                body:
+                    {
+                        "class_rank": class rank of the user,
+                        "global_rank": global rank of the user,
+                        "msg": "Ranks gave successfully."
+                    }
+
+
+GET /leaderboard
+
+    Request:
+        header:
+            Authorization: Bearer JWT_token
+
+        body:
+            None
+
+    Response:
+            1. Success get leaderboard
+                Status 200 (OK)
+                body:
+                    {
+                        "class_leaderboard": class leaderboard,
+                        "global_leaderboard": global leaderboard,
+                        "msg": "Leaderboard gave successfully."
+                    }
