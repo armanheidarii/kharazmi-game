@@ -67,4 +67,30 @@ def game():
         user=user,
     )
 
+    if game_level == 0 and final_score > user.max_easy:
+        user.max_easy = final_score
+        user.score_received = user.max_easy + user.max_medium + user.max_hard
+        user.save()
+    elif game_level == 1 and final_score > user.max_medium:
+        user.max_medium = final_score
+        user.score_received = user.max_easy + user.max_medium + user.max_hard
+        user.save()
+    elif game_level == 2 and final_score > user.max_hard:
+        user.max_hard = final_score
+        user.score_received = user.max_easy + user.max_medium + user.max_hard
+        user.save()
+
+    if level1_score > user.max_level1_score:
+        user.max_level1_score = level1_score
+        user.save()
+    if level2_score > user.max_level2_score:
+        user.max_level2_score = level2_score
+        user.save()
+    if level3_score > user.max_level3_score:
+        user.max_level3_score = level3_score
+        user.save()
+    if level4_score > user.max_level4_score:
+        user.max_level4_score = level4_score
+        user.save()
+
     return jsonify({"msg": "Game created successfully."}), 201
