@@ -3,53 +3,23 @@ POST /signup
     Request:
         body:
             {
-                "username": “arman”,
-                "password": “123456”,
-                "email": "armanheids@gmail.com",
-                "class_name": “A”
+                "username": any unique string,
+                "password": any string that length is greater than 6,
+                "email": any field that has an email form (optional),
+                "class_name": any string that is the name of a class
             }
-
-        Assumptions:
-            1. assert username is unique
-            2. assert password_len >= 6
-            3. assert email is optional
-            4. assert class_name is enum A, B, C, ...
 
     Response:
         Scenario:
-            1. Invalid username
+            1. Invalid input data
                 Status 400 (Bad Request)
                 body:
                     {
-                        "error": 1,
-                        "msg": "Username already exists!"
+                        "error": error code,
+                        "msg": related message
                     }
 
-            2. Invalid password
-                Status 400 (Bad Request)
-                body:
-                    {
-                        "error": 2,
-                        "msg": "Password is incorrect!"
-                    }
-
-            3. Invalid email
-                Status 400 (Bad Request)
-                body:
-                    {
-                        "error": 3,
-                        "msg": "Email is invalid!"
-                    }
-
-            4. Invalid class_name
-                Status 400 (Bad Request)
-                body:
-                    {
-                        "error": 4,
-                        "msg": "Class name was not exist!"
-                    }
-
-            5. Success signup
+            2. Signup success
                 Status 201 (Created)
                 body:
                     {
@@ -62,64 +32,52 @@ POST /login
     Request:
         body:
             {
-                username: “arman”,
-                password: “123456”
+                username: any string you have previously registered for,
+                password: any string related to the user
             }
-
-        Assumptions:
-            1. assert username is exist
-            2. assert password is correct
 
     Response:
         Scenario:
-            1. Username is not exist
+            1. Invalid input data
                 Status 401 (Unauthorized)
                 body:
                     {
-                        "error": 1,
-                        "msg": "Username was not exist!"
+                        "error": error code,
+                        "msg": related message
                     }
 
-            2. Password is incorrect
-                Status 401 (Unauthorized)
-                body:
-                    {
-                        "error": 2,
-                        "msg": "Password is incorrect!"
-                    }
-
-            3. Success login
+            2. Success login
                 Status 200 (OK)
                 body:
                     {
                         "token": JWT_token,
-                        "msg": "Login was successful."
+                        "msg": "Login was successfully."
                     }
 
 
 POST /game
 
     Request:
+        header:
+            Authorization: Bearer JWT_token
+
         body:
             {
-                "game_level": 1,
-                "level1_score": 9,
-                "level2_score": 8,
-                "level3_score": 4,
-                "level4_score": 6
+                "game_level": any number between 0 and 2,
+                "level1_score": any number between 0 and 10,
+                "level2_score": any number between 0 and 3,
+                "level3_score": any number greater than 0,
+                "level4_score": any number between 0 and 2
             }
-
-        Assumptions:
-            1. assert game level is 1 to 3
 
     Response:
         Scenario:
-            1. Invalid game_level
+            1. Invalid input data
                 Status 400 (Bad Request)
                 body:
                     {
-                        "error": 1,
-                        "msg": "Game level is invalid!"
+                        "error": error code,
+                        "msg": related message
                     }
 
             2. Success game creation
@@ -127,4 +85,66 @@ POST /game
                 body:
                     {
                         "msg": "Game created successfully."
+                    }
+
+
+GET /max-game-levels
+
+    Request:
+        header:
+            Authorization: Bearer JWT_token
+
+        body:
+            None
+
+    Response:
+            1. Success game creation
+                Status 200 (OK)
+                body:
+                    {
+                        "max_level1": maximum score of the user in level1,
+                        "max_level2": maximum score of the user in level2,
+                        "max_level3": maximum score of the user in level3,
+                        "max_level4": maximum score of the user in level4,
+                        "msg": "Max game levels gave successfully."
+                    }
+
+
+GET /max-game-categories
+
+    Request:
+        header:
+            Authorization: Bearer JWT_token
+
+        body:
+            None
+
+    Response:
+            1. Success game creation
+                Status 200 (OK)
+                body:
+                    {
+                        "max_easy": maximum score of the user in easy,
+                        "max_medium": maximum score of the user in medium,
+                        "max_hard": maximum score of the user in hard,
+                        "msg": "Max game categories gave successfully."
+                    }
+
+
+GET /games-count
+
+    Request:
+        header:
+            Authorization: Bearer JWT_token
+
+        body:
+            None
+
+    Response:
+            1. Success game creation
+                Status 200 (OK)
+                body:
+                    {
+                        "games_count": games count of the user,
+                        "msg": "Games count gave successfully."
                     }
