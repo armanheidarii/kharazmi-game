@@ -41,16 +41,16 @@ def game():
     if game_level < 0 or game_level > 2:
         return jsonify({"error": 7, "msg": "Game level is invalid!"}), 400
 
-    if game_level < 0 or game_level > 10:
+    if level1_score < 0 or level1_score > 10:
         return jsonify({"error": 8, "msg": "Level1 score is invalid!"}), 400
 
-    if game_level < 0 or game_level > 3:
+    if level2_score < 0 or level2_score > 3:
         return jsonify({"error": 9, "msg": "Level2 score is invalid!"}), 400
 
-    if game_level < 0:
+    if level3_score < 0:
         return jsonify({"error": 10, "msg": "Level3 score is invalid!"}), 400
 
-    if game_level < 0 or game_level > 2:
+    if level4_score < 0 or level4_score > 2:
         return jsonify({"error": 11, "msg": "Level4 score is invalid!"}), 400
 
     final_score = (
