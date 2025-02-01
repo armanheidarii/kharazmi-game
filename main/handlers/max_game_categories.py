@@ -3,7 +3,6 @@ from flask import jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from main.db.models.User import User
-from main.db.models.Game import Game
 from main import app
 
 
