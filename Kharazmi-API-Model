@@ -110,27 +110,6 @@ GET /max-game-levels
                     }
 
 
-GET /max-game-categories
-
-    Request:
-        header:
-            Authorization: Bearer JWT_token
-
-        body:
-            None
-
-    Response:
-            1. Success get max game categories
-                Status 200 (OK)
-                body:
-                    {
-                        "max_easy": maximum score of the user in easy,
-                        "max_medium": maximum score of the user in medium,
-                        "max_hard": maximum score of the user in hard,
-                        "msg": "Max game categories gave successfully."
-                    }
-
-
 GET /games-count
 
     Request:
@@ -164,6 +143,9 @@ GET /score-received
                 Status 200 (OK)
                 body:
                     {
-                        "score_received": score received of the user,
+                        "max_easy": maximum score of the user in easy,
+                        "max_medium": maximum score of the user in medium,
+                        "max_hard": maximum score of the user in hard,
+                        "score_received": score that the user received,
                         "msg": "Score received gave successfully."
                     }
