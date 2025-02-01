@@ -17,18 +17,10 @@ def max_game_levels():
     except DoesNotExist:
         return jsonify({"error": 1, "msg": "Username was not exist!"}), 400
 
-    max_level1 = (
-        Game.select(fn.MAX(Game.level1_score)).where(Game.user == user).scalar() or 0
-    )
-    max_level2 = (
-        Game.select(fn.MAX(Game.level2_score)).where(Game.user == user).scalar() or 0
-    )
-    max_level3 = (
-        Game.select(fn.MAX(Game.level3_score)).where(Game.user == user).scalar() or 0
-    )
-    max_level4 = (
-        Game.select(fn.MAX(Game.level4_score)).where(Game.user == user).scalar() or 0
-    )
+    max_level1 = user.games.select(fn.MAX(Game.level1_score)).scalar() or 0
+    max_level2 = user.games.select(fn.MAX(Game.level2_score)).scalar() or 0
+    max_level3 = user.games.select(fn.MAX(Game.level3_score)).scalar() or 0
+    max_level4 = user.games.select(fn.MAX(Game.level4_score)).scalar() or 0
 
     return (
         jsonify(
