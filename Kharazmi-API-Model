@@ -1,0 +1,130 @@
+POST /signup
+
+    Request:
+        body:
+            {
+                "username": “arman”,
+                "password": “123456”,
+                "email": "armanheids@gmail.com",
+                "class_name": “A”
+            }
+
+        Assumptions:
+            1. assert username is unique
+            2. assert password_len >= 6
+            3. assert email is optional
+            4. assert class_name is enum A, B, C, ...
+
+    Response:
+        Scenario:
+            1. Invalid username
+                Status 400 (Bad Request)
+                body:
+                    {
+                        "error": 1,
+                        "msg": "Username already exists!"
+                    }
+
+            2. Invalid password
+                Status 400 (Bad Request)
+                body:
+                    {
+                        "error": 2,
+                        "msg": "Password is incorrect!"
+                    }
+
+            3. Invalid email
+                Status 400 (Bad Request)
+                body:
+                    {
+                        "error": 3,
+                        "msg": "Email is invalid!"
+                    }
+
+            4. Invalid class_name
+                Status 400 (Bad Request)
+                body:
+                    {
+                        "error": 4,
+                        "msg": "Class name was not exist!"
+                    }
+
+            5. Success signup
+                Status 201 (Created)
+                body:
+                    {
+                        "msg": "User created successfully."
+                    }
+
+
+POST /login
+
+    Request:
+        body:
+            {
+                username: “arman”,
+                password: “123456”
+            }
+
+        Assumptions:
+            1. assert username is exist
+            2. assert password is correct
+
+    Response:
+        Scenario:
+            1. Username is not exist
+                Status 401 (Unauthorized)
+                body:
+                    {
+                        "error": 1,
+                        "msg": "Username was not exist!"
+                    }
+
+            2. Password is incorrect
+                Status 401 (Unauthorized)
+                body:
+                    {
+                        "error": 2,
+                        "msg": "Password is incorrect!"
+                    }
+
+            3. Success login
+                Status 200 (OK)
+                body:
+                    {
+                        "token": JWT_token,
+                        "msg": "Login was successful."
+                    }
+
+
+POST /game
+
+    Request:
+        body:
+            {
+                "game_level": 1,
+                "level1_score": 9,
+                "level2_score": 8,
+                "level3_score": 4,
+                "level4_score": 6
+            }
+
+        Assumptions:
+            1. assert game level is 1 to 3
+
+    Response:
+        Scenario:
+            1. Invalid game_level
+                Status 400 (Bad Request)
+                body:
+                    {
+                        "error": 1,
+                        "msg": "Game level is invalid!"
+                    }
+
+            2. Success game creation
+                Status 201 (Created)
+                body:
+                    {
+                        "msg": "Game created successfully."
+                    }
