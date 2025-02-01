@@ -13,6 +13,7 @@ jwt = JWTManager(app)
 def signup():
     username = request.json.get("username")
     password = request.json.get("password")
+    email = request.json.get("email")
     class_name = request.json.get("class_name")
 
     if User.select().where(User.username == username).exists():
@@ -21,11 +22,14 @@ def signup():
     if len(password) < 6:
         return jsonify({"error": 2, "msg": "Password is incorrect!"}), 400
 
+    if email and not validators_email(email):
+        return jsonify({"error": 3, "msg": "Email is invalid!"}), 400
+
     class_ref = (
         KharazmiClass.select().where(KharazmiClass.class_name == class_name).exists()
     )
     if not class_ref:
-        return jsonify({"error": 3, "msg": "Class name was not exist!"}), 400
+        return jsonify({"error": 4, "msg": "Class name was not exist!"}), 400
 
     user = User.create(username=username, password=password, class_ref=class_ref)
     return jsonify({"msg": "User created successfully."}), 201

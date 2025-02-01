@@ -23,6 +23,7 @@ class KharazmiClass(BaseModel):
 class User(BaseModel):
     username = CharField(unique=True)
     password = CharField()
+    email = CharField(null=True)
     class_ref = ForeignKeyField(KharazmiClass, backref="users")
 
 
