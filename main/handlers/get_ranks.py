@@ -24,7 +24,8 @@ def get_ranks():
         )
         .count()
     ) + 1
-    overall_rank = (
+
+    global_rank = (
         User.select().where(User.score_received > user.score_received).count() + 1
     )
 
@@ -32,7 +33,7 @@ def get_ranks():
         jsonify(
             {
                 "class_rank": class_rank,
-                "overall_rank": overall_rank,
+                "global_rank": global_rank,
                 "msg": "Ranks gave successfully.",
             }
         ),
