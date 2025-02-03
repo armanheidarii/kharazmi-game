@@ -53,8 +53,14 @@ def game():
     if level4_score < 0 or level4_score > 2:
         return jsonify({"error": 11, "msg": "Level4 score is invalid!"}), 400
 
-    final_score = (
-        level1_score + level2_score + level3_score + level4_score + 10 * game_level
+    score_coefficient = 2
+    if game_level == 1:
+        score_coefficient = 4
+    elif game_level == 2:
+        score_coefficient = 8
+
+    final_score = score_coefficient * (
+        (1 if level1_score == 10 else 0) + level2_score + level3_score + level4_score
     )
 
     game = Game.create(
