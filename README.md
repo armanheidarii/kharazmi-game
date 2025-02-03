@@ -1,7 +1,7 @@
 # kharazmi-game
 
 ```bash
-git clone https://github.com/armanheidarii/kharazmi-game
+git clone https://github.com/armanheidarii/kharazmi-game.git
 cd kharazmi-game
 
 cp .env.example .env
