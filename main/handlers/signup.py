@@ -33,7 +33,7 @@ def signup():
     if len(password) < 6:
         return jsonify({"error": 5, "msg": "Password is incorrect!"}), 400
 
-    if email and not validators_email(email):
+    if email and email.isspace() and not validators_email(email):
         return jsonify({"error": 6, "msg": "Email is invalid!"}), 400
 
     class_ref = (
