@@ -14,13 +14,13 @@ def signup():
     email = request.json.get("email")
     class_name = request.json.get("class_name")
 
-    if not username:
+    if username == None:
         return jsonify({"error": 1, "msg": "Username cannot be empty!"}), 400
 
-    if not password:
+    if password == None:
         return jsonify({"error": 2, "msg": "Password cannot be empty!"}), 400
 
-    if not class_name:
+    if class_name == None:
         return jsonify({"error": 3, "msg": "Class name cannot be empty!"}), 400
 
     try:

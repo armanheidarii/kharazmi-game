@@ -23,19 +23,19 @@ def game():
     level3_score = request.json.get("level3_score")
     level4_score = request.json.get("level4_score")
 
-    if not game_level:
+    if game_level == None:
         return jsonify({"error": 2, "msg": "Game level cannot be empty!"}), 400
 
-    if not level1_score:
+    if level1_score == None:
         return jsonify({"error": 3, "msg": "Level1 score cannot be empty!"}), 400
 
-    if not level2_score:
+    if level2_score == None:
         return jsonify({"error": 4, "msg": "Level2 score cannot be empty!"}), 400
 
-    if not level3_score:
+    if level3_score == None:
         return jsonify({"error": 5, "msg": "Level3 score cannot be empty!"}), 400
 
-    if not level4_score:
+    if level4_score == None:
         return jsonify({"error": 6, "msg": "Level4 score cannot be empty!"}), 400
 
     if game_level < 0 or game_level > 2:

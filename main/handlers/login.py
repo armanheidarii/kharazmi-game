@@ -11,10 +11,10 @@ def login():
     username = request.json.get("username")
     password = request.json.get("password")
 
-    if not username:
+    if username == None:
         return jsonify({"error": 1, "msg": "Username cannot be empty!"}), 400
 
-    if not password:
+    if password == None:
         return jsonify({"error": 2, "msg": "Password cannot be empty!"}), 400
 
     try:
